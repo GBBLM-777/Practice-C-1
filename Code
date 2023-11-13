@@ -1,0 +1,309 @@
+/*
+Using switch case statement, create a C++ program that will prompt the user the following
+menu:
+=========================
+CONVERSION
+=========================
+[1] numbers to roman
+[2] military to 24hour
+[3] exit
+=========================
+Enter your choice:
+***NOTE: use an error handle (default if choice is invalid)
+*/
+
+#include<iostream>
+#include<string>
+#include<iomanip>
+
+using namespace std;
+
+int main()
+{
+	//declaration statement;
+	int nbr,time, hour, minute;
+	char roman, let;
+	int decision;
+	
+	
+	// executable statement Input-process-output
+	do
+	{
+	//input
+	cout<<"========================="<<endl;
+	cout<<""<<endl;
+	cout<<"       CONVERSION"<<endl;	
+	cout<<""<<endl;
+	cout<<"========================="<<endl;
+	cout<<""<<endl;
+	cout<<"[1] Numbers to Roman Numeral"<<endl;
+	cout<<""<<endl;
+	cout<<"[2] Military to 24 Hour (24Hr clock to 12Hr clock)"<<endl;
+	cout<<""<<endl;
+	cout<<"[3] Exit"<<endl;
+	cout<<""<<endl;
+	cout<<"========================="<<endl;
+	cout<<""<<endl;
+	cout<<"Enter your choice: ";
+	cin>>decision;
+	
+	//process
+		switch (decision)
+		{
+			
+			
+			case 1:/*Number to Roman Numeral Converter:
+					Create a program that prompts the user to enter a number (from 1-3000 only) then
+					output the number and its corresponding roman numeral number*/
+				{
+					//input
+					cout<<"========================="<<endl;
+					cout<<""<<endl;
+					cout<<"       CONVERSION"<<endl;
+					cout<<"    Number to Roman"<<endl;
+					cout<<""<<endl;
+					cout<<"========================="<<endl;
+					cout<<""<<endl;
+					cout<<"Enter a Number: ";
+					cin>>nbr;
+						string roman = "";		
+						
+						if (nbr>3000||nbr<1)//Error Handling
+						{
+							cout<<"Number should be from 1-3000 only (Conversion Terminated)"<<endl;
+							cout<<"Thank you and Goodbye!"<<endl;
+							return(0);
+						}
+						
+						//process
+						else 
+						{
+							while (nbr >= 1000)// Thousands  
+								{
+								nbr -= 1000;
+								roman += "M";
+								}
+									
+							while (nbr >= 900)// Hundreds
+								{
+								nbr -= 900;
+								roman += "CM";
+								}
+							
+							while (nbr>= 500)// Hundreds
+								{
+								nbr -= 500;
+								roman += "D";	
+								}
+							
+							while (nbr >= 400)// Hundreds
+								{
+								nbr -= 400;
+								roman += "CD";
+								}
+									
+							while (nbr >= 100)// Hundreds
+								{	
+								nbr -= 100;
+								roman += "C";
+								}
+								
+							while (nbr >= 90)// Tens
+								{	
+								nbr -= 90;
+								roman += "XC";
+								}
+									
+							while (nbr >= 50)// Tens
+								{
+								nbr -= 50;
+								roman += "L";
+								}
+								
+							while (nbr >= 40)// Tens
+								{	
+								nbr -= 40;
+								roman += "XL";	
+								}
+							
+							while (nbr >= 10)// Tens
+								{
+								nbr -= 10;
+								roman += "X";
+								}
+									
+							while (nbr >= 9)//Ones
+								{	
+								nbr -= 9;
+								roman += "IX";
+								}
+									
+							while (nbr >= 5)//Ones
+								{	
+								nbr -= 5;
+								roman += "V";		
+								}
+									
+							while (nbr >= 4)//Ones
+								{	
+								nbr -= 4;
+								roman += "IV";			
+								}
+									
+							while (nbr >= 1)//Ones
+								{				
+								nbr -= 1;
+								roman += "I";			
+								}
+							//output
+							cout<<"Roman Numeral = "<< roman<<endl;
+							cout<<"Conversion Complete"<<endl;
+							cout<<"Thank you and Goodbye!"<<endl;
+							return (0);
+						}
+						
+				break;
+				
+				}
+				
+					
+			case 2:/*Military Time to Civilian Time Converter:
+					Create a program that will prompt the user to input time based on a 12-hour clock
+					and output the corresponding time based on a 24-hour clock. Check all possible invalid input
+					data. Also validate input time, time must be from 0-2400 only. Then extract the time using
+					variable hours and minutes. */
+				{
+					//input
+					cout<<"========================="<<endl;
+					cout<<""<<endl;
+					cout<<"       CONVERSION"<<endl;
+					cout<<"  Military to Civilian"<<endl;
+					cout<<""<<endl;
+					cout<<"========================="<<endl;
+					cout<<""<<endl;
+					cout<<"Enter a Military Time (ex.2359 --> 1159 PM): ";
+					cin>>time;
+						
+						
+						if (time>2400||time<0000)// Error Handling
+						{
+							//output
+							cout<<"Time should be from 0000-2400 only (Conversion Terminated)"<<endl;
+							cout<<"Thank you and Goodbye!"<<endl;
+							return (0);
+						}
+						
+						
+						else if (time==0000)//12:00 AM (Midnight)
+						{
+							//output
+							cout<<"12Hr Clock Format = 12:00 AM "<<endl;
+							cout<<"Conversion Complete"<<endl;
+							cout<<"Thank you and Goodbye!"<<endl;
+							return (0);
+						
+						}
+						
+						
+						else if (time<1200)//AM (12:01 AM to 11:59 AM)
+						{
+							//process
+							hour = time/100;
+							minute = time%100;
+							
+							if (hour == 0)
+							{
+								hour = hour + 12;
+							}
+							
+							else if((minute>60)&&(minute<100)) //Error handling 
+							{	
+								//output
+								cout<<"Invalid Time! (Conversion Terminated)"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+							}
+							
+							else if(minute<10) //output
+							{
+								//output
+								cout<<"12Hr Clock Format = "<<hour<<":0"<<minute<<" A.M."<<endl;
+								cout<<"Conversion Complete"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+								return (0);
+							}
+								
+							else 
+							{
+								//output
+								cout<<"12Hr Clock Format = "<<hour<<":"<<minute<<" A.M."<<endl;
+								cout<<"Conversion Complete"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+								return (0);
+							}
+						}
+							
+							
+						else (hour>=1200);//PM (12:00 PM to 11:59 PM)
+						{
+							//process
+							hour = time/100;
+							hour = hour-12;
+							minute = time%100;
+							
+							if (hour == 0)
+							{
+								hour = hour + 12;
+							}
+							
+							
+							else if((minute>60)&&(minute<100)) //Error handling 
+							{
+								//output
+								cout<<"Invalid Time! (Conversion Terminated)"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+							}
+							
+							
+							else if(minute<10)
+							{
+								//output
+								cout<<"12Hr Clock Format = "<<hour<<":0"<<minute<<" P.M."<<endl;
+								cout<<"Conversion Complete"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+								return (0);
+							}
+							
+								
+							else
+							{
+								//output	
+								cout<<"12Hr Clock Format = "<<hour<<":"<<minute<<" P.M."<<endl;
+								cout<<"Conversion Complete"<<endl;
+								cout<<"Thank you and Goodbye!"<<endl;
+								return (0);
+								}
+						}
+				
+				break;	
+				
+				}
+			
+			
+			case 3:// Exit
+				{
+					cout<<"Thank you and Goodbye!"<<endl;
+					return (0);
+				
+				break;
+				
+				}	
+			
+			
+			default: cout<<"Invalid Choice, Please Try Again!"<<endl;
+		}
+	}	
+	while (decision != 1||decision != 2|| decision != 3);				
+}
+
+
+				
